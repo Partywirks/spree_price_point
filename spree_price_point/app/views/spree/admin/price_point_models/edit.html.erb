@@ -1,0 +1,13 @@
+<% content_for :page_title do %>
+  <%= Spree.t(:price_point_model_edit) %>
+<% end %>
+
+
+<%= form_for [:admin, @price_point_model] do |f| %>
+  <fieldset>
+    <%= render partial: 'form', locals: { f: f } %>
+  </fieldset>
+
+  <%= render 'spree/admin/shared/edit_resource_links' %>
+
+<% end %>

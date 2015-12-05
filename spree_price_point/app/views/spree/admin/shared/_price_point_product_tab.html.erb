@@ -1,0 +1,3 @@
+<%= content_tag :li, class: ('active' if current == Spree.t(:price_point)) do %>
+  <%= link_to_with_icon 'th', Spree.t(:price_point), price_points_admin_product_variant_url(@product, @product.master) %>
+<% end %>

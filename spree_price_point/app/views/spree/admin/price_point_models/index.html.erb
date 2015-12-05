@@ -1,0 +1,18 @@
+<% content_for :page_title do %>
+  <%= "Price Point Models" %>
+<% end %>
+
+<% content_for :page_actions do %>
+  <%= button_link_to Spree.t(:new_price_point_model), new_object_url, class: "btn-success", icon: 'add', id: 'admin_new_price_point_model_link' %>
+<% end %>
+
+<% if @price_point_models.any? %>
+  <div id="list-price-point-models" data-hook>
+    <%= render 'list' %>
+  </div>
+<% else %>
+  <div class="alert alert-info no-objects-found">
+    <%= Spree.t(:no_resource_found, resource: "Price Point Models") %>,
+    <%= link_to Spree.t(:add_one), new_object_url %>!
+  </div>
+<% end %>

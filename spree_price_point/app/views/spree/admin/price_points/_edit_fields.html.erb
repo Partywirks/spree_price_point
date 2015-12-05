@@ -1,0 +1,28 @@
+<% content_for :page_actions do %>
+  <span id="new_add_price_point" data-hook>
+    <%= button_link_to Spree.t(:add_price_point), 'javascript:;', {
+        icon: 'add',
+        :'data-target' => 'tbody#price_points',
+        class: 'btn-success spree_add_fields',
+        id: 'add_price_point'
+      } %>
+  </span>
+<% end %>
+
+<h3><%= Spree.t(:price_points) %></h3>
+<table class="table">
+  <thead>
+    <tr>
+      <th><%= Spree.t(:name) %></th>
+      <th><%= Spree.t(:offset) %></th>
+      <th><%= Spree.t(:position) %></th>
+      <th><%= Spree.t(:action) %></th>
+    </tr>
+  </thead>
+  <tbody id="price_points">
+    <%= f.fields_for :price_points do |vp_form| %>
+      <%= render partial: 'spree/admin/price_points/price_point_fields', locals: { f: vp_form } %>
+    <% end %>
+  </tbody>
+</table>
+<br/><br/>

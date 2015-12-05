@@ -1,0 +1,5 @@
+require 'sass/rails'
+require 'spree/core'
+require 'spree_price_point/engine'
+require 'spree_price_point/version'
+require 'coffee_script'

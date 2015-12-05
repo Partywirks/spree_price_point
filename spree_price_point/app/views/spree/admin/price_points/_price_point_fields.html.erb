@@ -1,0 +1,17 @@
+<tr class="price_point fields">
+  <td>
+    <%= error_message_on(f.object, :name) %>
+    <%= f.text_field :name, size: 10, class: 'form-control' %>
+  </td>
+  <td>
+    <%= error_message_on(f.object, :offset) %>
+    <%= f.text_field :offset, size: 10, class: 'form-control' %>
+  </td>
+  <td>
+    <%= error_message_on(f.object, :position) %>
+    <%= f.text_field :position, size: 3, class: 'form-control' %>
+  </td>
+  <td class="actions">
+    <%= link_to_icon_remove_fields f %>
+  </td>
+</tr>

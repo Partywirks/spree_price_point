@@ -1,0 +1,36 @@
+<%= render 'spree/admin/shared/product_tabs', current: Spree.t(:price_point) %>
+<%= render 'spree/shared/error_messages', target: @variant %>
+
+<% content_for :page_actions do %>
+  <span id="new_add_price_point" data-hook>
+    <%= button_link_to Spree.t(:add_price_point), 'javascript:;', {
+      icon: 'add', :'data-target' => 'tbody#price_points', class: 'btn-success spree_add_fields', id: 'add_price_point'} %>
+  </span>
+<% end %>
+
+<%= form_for(@variant, url: admin_product_variant_path(@product, @variant), html: { method: :put }) do |f| %>
+  <h3><%= Spree.t(:price_points) %></h3>
+  <table class="table">
+    <thead>
+      <tr>
+        <th><%= Spree.t(:name) %></th>
+        <th><%= Spree.t(:offset) %></th>
+        <th><%= Spree.t(:position) %></th>
+        <th class="actions"></th>
+      </tr>
+    </thead>
+    <tbody id="price_points">
+      <%= f.fields_for :price_points do |vp_form| %>
+      <%= render partial: 'spree/admin/price_points/price_point_fields', locals: { f: vp_form } %>
+      <% end %>
+    </tbody>
+    <tbody id="price_point_models">
+      <%= f.field_container :price_point_model, class: ['form-group'] do %>
+        <%= f.label :price_point_model_id, Spree.t(:price_point_model) %>
+        <%= f.collection_select(:price_point_model_ids, Spree::PricePointModel.all, :id, :name, { include_blank: Spree.t('match_choices.none') }, { class: 'select2', disabled: (cannot? :edit, Spree::PricePointModel) }) %>
+      <%= f.error_message_on :price_point_model %>
+      <% end %>
+    </tbody>
+  </table>
+  <%= render 'spree/admin/shared/edit_resource_links' %>
+<% end %>
