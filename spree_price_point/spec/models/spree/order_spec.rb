@@ -58,6 +58,12 @@ RSpec.describe Spree::Order, type: :model do
       expect(@order.total).to eq(35.98) 
     end
 
+    it 'can add regular prices after price point is added' do 
+      @order.contents.add(@variant_with_price_points, 2, { price_point_id: @child_price_point.id }) # 31.98
+      @order.contents.add(@variant_with_price_points, 1) #19.99
+      expect(@order.total).to eq(51.97) 
+    end
+
     it 'handles recalculating price points' do
       @order.contents.add(@variant_with_price_points, 1) #19.99
       @order.contents.add(@variant_with_price_points, 1, { price_point_id: @child_price_point.id }) # 15.99
