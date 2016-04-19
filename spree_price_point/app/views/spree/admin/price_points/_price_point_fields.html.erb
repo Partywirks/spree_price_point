@@ -19,6 +19,10 @@
     <%= error_message_on(f.object, :position) %>
     <%= f.text_field :position, size: 3, class: 'form-control' %>
   </td>
+  <td>
+    <%= error_message_on(f.object, :required) %>
+    <%= f.check_box :required, class: 'form-control' %>
+  </td>
   <td class="actions">
     <%= link_to_icon_remove_fields f %>
   </td>
