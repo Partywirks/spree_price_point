@@ -5,3 +5,6 @@ en:
     position: Position
     price_points: Price Points
     price_point: Price Point
+    minimum_occupancy: Minimum Occupancy
+    maximum_occupancy: Maximum Occupancy
+    required: Required
