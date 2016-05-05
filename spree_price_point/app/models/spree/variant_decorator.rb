@@ -12,14 +12,17 @@ Spree::Variant.class_eval do
     Spree::PricePoint.where(price_point_table[:variant_id].eq(self.id).or(price_point_table[:price_point_model_id].in(self.price_point_models.ids))).order(position: :asc)
   end
 
-  def price_point(price_point_id='')
+  def price_point(price_point_id='', qty=1, user=nil)
 
     if self.product.master.join_price_points.count == 0
       return self.price
     else
       self.product.master.join_price_points.each do |price_point|
         if price_point.id == price_point_id
-          offset_price = self.price + price_point.offset 
+          #need to check if there's a volume price. 
+          vprice = self.product.master.volume_price(quantity, user)
+
+          offset_price = vprice + price_point.offset 
           if offset_price < 0
             offset_price = 0
           end
