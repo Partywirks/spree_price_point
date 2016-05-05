@@ -20,7 +20,7 @@ Spree::Variant.class_eval do
       self.product.master.join_price_points.each do |price_point|
         if price_point.id == price_point_id
           #need to check if there's a volume price. 
-          vprice = self.product.master.volume_price(quantity, user)
+          vprice = self.product.master.volume_price(qty, user)
 
           offset_price = vprice + price_point.offset 
           if offset_price < 0
